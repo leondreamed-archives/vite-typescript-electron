@@ -1,4 +1,4 @@
-export function postMessage(type: string, payload: unknown) {
+export function sendMessage(type: string, payload: unknown) {
 	window.postMessage(
 		JSON.stringify({
 			type,

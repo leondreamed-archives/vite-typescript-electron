@@ -1,7 +1,30 @@
+import process from 'process';
+import type { ReadStream, WriteStream } from 'tty';
 import inquirer from 'inquirer';
+import onetime from 'onetime';
+import PressToContinuePrompt from 'inquirer-press-to-continue';
+import { sendMessage } from '~p/utils/message.js';
+
+const stdin = Object.create(process.stdin) as ReadStream;
+const stdout = Object.create(process.stdout) as WriteStream;
+stdout.write = (data) => {
+	sendMessage('command-output', data.toString());
+	return true;
+};
+
+export const getPrompt = onetime(() => {
+	const prompt = inquirer.createPromptModule({
+		input: stdin,
+		output: stdout,
+	});
+	prompt.registerPrompt('press-to-continue', PressToContinuePrompt);
+	return prompt;
+});
 
 export async function askUser(message: string, fn: () => void | Promise<void>) {
-	const { response } = await inquirer.prompt<{ response: boolean }>({
+	const prompt = getPrompt();
+
+	const { response } = await prompt<{ response: boolean }>({
 		name: 'response',
 		type: 'confirm',
 		message,
@@ -12,11 +35,21 @@ export async function askUser(message: string, fn: () => void | Promise<void>) {
 	}
 }
 
-export async function pressToContinue(message: string) {
-	await inquirer.prompt({
-		name: 'response',
-		pressToContinueMessage: `${message}, press enter to continue...`,
-		type: 'press-to-continue',
-		enter: true,
-	});
+export async function pressToContinue(message?: string) {
+	const prompt = getPrompt();
+
+	if (message === undefined) {
+		await prompt({
+			name: 'response',
+			type: 'press-to-continue',
+			enter: true,
+		});
+	} else {
+		await prompt({
+			name: 'response',
+			pressToContinueMessage: `${message}, press enter to continue...`,
+			type: 'press-to-continue',
+			enter: true,
+		});
+	}
 }

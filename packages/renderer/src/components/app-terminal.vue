@@ -6,15 +6,23 @@ import 'xterm/css/xterm.css';
 const term = new Terminal();
 const terminalEl = $ref<HTMLDivElement>();
 
-window.addEventListener('message', (event) => {
-	if (event.source === window) {
-		event.data
-	}
-
-})
-
 onMounted(() => {
 	term.open(terminalEl);
+
+	window.addEventListener('message', (event) => {
+		if (event.source === window) {
+			try {
+				const data = JSON.parse(event.data) as {
+					type: string;
+					payload: unknown;
+				};
+
+				if (data.type === 'command-output') {
+					term.write(data.payload as string);
+				}
+			} catch {}
+		}
+	});
 });
 </script>
 

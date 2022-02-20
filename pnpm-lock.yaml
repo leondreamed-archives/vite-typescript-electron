@@ -23,6 +23,7 @@ specifiers:
   lint-staged: ^12.3.4
   lion-git-hooks: ^1.0.3
   liontypes: ^1.0.2
+  onetime: ^5.1.2
   open: ^8.4.0
   outdent: ^0.8.0
   postcss: ^8.4.6
@@ -47,6 +48,7 @@ dependencies:
   execa: 5.1.1
   inquirer: 8.2.0
   inquirer-press-to-continue: 1.0.5
+  onetime: 5.1.2
   open: 8.4.0
   outdent: 0.8.0
   postcss: 8.4.6

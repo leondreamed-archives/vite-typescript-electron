@@ -4,6 +4,7 @@ import path from 'path';
 import { outdent } from 'outdent';
 import open from 'open';
 import { runCommand } from '../command.js';
+import { getPrompt } from '../prompt.js';
 
 export async function createGitHubSshKey() {
 	await runCommand(`ssh-keygen -t ed25519 -C 'contact@leonzalion.com'`, {
@@ -25,9 +26,10 @@ export async function createGitHubSshKey() {
 	await runCommand('ssh-add -K ~/.ssh/id_ed25519', { shell: true });
 	await open('https://github.com/settings/ssh/new');
 
+	const prompt = getPrompt();
 	for (;;) {
 		// eslint-disable-next-line no-await-in-loop
-		const input = await inquirer.prompt<{ response: string }>([
+		const input = await prompt<{ response: string }>([
 			{
 				type: 'input',
 				name: 'response',
@@ -36,7 +38,7 @@ export async function createGitHubSshKey() {
 		]);
 		if (input.response === 'c') {
 			// eslint-disable-next-line no-await-in-loop
-			await exec('pbcopy < ~/.ssh/id_ed25519.pub', { shell: true });
+			await runCommand('pbcopy < ~/.ssh/id_ed25519.pub', { shell: true });
 			console.info('SSH key was copied to clipboard.');
 		} else if (input.response === 'q') {
 			break;

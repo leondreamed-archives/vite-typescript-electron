@@ -1,20 +1,20 @@
 import process from 'process';
-import type { ReadStream, WriteStream } from 'tty';
+import type { WriteStream } from 'tty';
 import inquirer from 'inquirer';
 import onetime from 'onetime';
 import PressToContinuePrompt from 'inquirer-press-to-continue';
 import { sendMessage } from '~p/utils/message.js';
-
-const stdin = Object.create(process.stdin) as ReadStream;
-const stdout = Object.create(process.stdout) as WriteStream;
-stdout.write = (data) => {
-	sendMessage('command-output', data.toString());
-	return true;
-};
+import { getStdin } from '~p/modules/stdin.js';
 
 export const getPrompt = onetime(() => {
+	const stdout = Object.create(process.stdout) as WriteStream;
+	stdout.write = (data) => {
+		sendMessage('command-output', data.toString());
+		return true;
+	};
+
 	const prompt = inquirer.createPromptModule({
-		input: stdin,
+		input: getStdin(),
 		output: stdout,
 	});
 	prompt.registerPrompt('press-to-continue', PressToContinuePrompt);

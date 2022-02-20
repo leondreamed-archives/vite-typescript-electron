@@ -11,6 +11,7 @@ specifiers:
   autoprefixer: ^10.4.2
   cross-env: ^7.0.3
   daisyui: ^1.25.4
+  denque: ^2.0.1
   desm: ^1.2.0
   electron: ^17.0.1
   electron-builder: ^22.14.5
@@ -29,6 +30,7 @@ specifiers:
   postcss: ^8.4.6
   prettier: ^2.5.1
   rollup: ^2.67.3
+  string-to-stream: ^3.0.1
   tailwindcss: ^3.0.18
   ts-node: ^10.5.0
   type-fest: ^2.11.1
@@ -43,6 +45,7 @@ specifiers:
 dependencies:
   autoprefixer: 10.4.2_postcss@8.4.6
   daisyui: 1.25.4
+  denque: 2.0.1
   desm: 1.2.0
   electron-updater: 4.6.1
   execa: 5.1.1
@@ -52,6 +55,7 @@ dependencies:
   open: 8.4.0
   outdent: 0.8.0
   postcss: 8.4.6
+  string-to-stream: 3.0.1
   tailwindcss: 3.0.18_27d966e3a2f4b84fbc8a2f9653dbb362
   type-fest: 2.11.1
   vue: 3.2.29
@@ -2226,6 +2230,11 @@ packages:
     resolution: {integrity: sha1-3zrhmayt+31ECqrgsp4icrJOxhk=}
     engines: {node: '>=0.4.0'}
     dev: true
+
+  /denque/2.0.1:
+    resolution: {integrity: sha512-tfiWc6BQLXNLpNiR5iGd0Ocu3P3VpxfzFiqubLgMfhfOw9WyvgJBd46CClNn9k3qfbjvT//0cf7AlYRX/OslMQ==}
+    engines: {node: '>=0.10'}
+    dev: false
 
   /desm/1.2.0:
     resolution: {integrity: sha512-/sHgwtz8V4kzHc/cii4OTtpEssvYe/yDDlPnZyMP5wO5KXYGfUoh22n+8OMhepStjhq6o577SRgTrdfcRepDbw==}
@@ -5713,6 +5722,12 @@ packages:
     resolution: {integrity: sha512-a1uQGz7IyVy9YwhqjZIZu1c8JO8dNIe20xBmSS6qu9kv++k3JGzCVmprbNN5Kn+BgzD5E7YYwg1CcjuJMRNsvg==}
     engines: {node: '>=0.6.19'}
     dev: true
+
+  /string-to-stream/3.0.1:
+    resolution: {integrity: sha512-Hl092MV3USJuUCC6mfl9sPzGloA3K5VwdIeJjYIkXY/8K+mUvaeEabWJgArp+xXrsWxCajeT2pc4axbVhIZJyg==}
+    dependencies:
+      readable-stream: 3.6.0
+    dev: false
 
   /string-width/4.2.3:
     resolution: {integrity: sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==}

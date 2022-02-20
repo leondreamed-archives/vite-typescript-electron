@@ -3,15 +3,14 @@ import path from 'node:path';
 import process from 'node:process';
 import fs from 'node:fs';
 import type { UserConfig } from 'vite';
-import desm, { join } from 'desm';
 
 const { chrome } = JSON.parse(
 	fs
-		.readFileSync(join(import.meta.url, '../../electron-vendors.config.json'))
+		.readFileSync(path.join(__dirname, '../../electron-vendors.config.json'))
 		.toString()
 ) as { chrome: string; node: string };
 
-const PACKAGE_ROOT = desm(import.meta.url);
+const PACKAGE_ROOT = __dirname;
 
 const config: UserConfig = {
 	mode: process.env.MODE,
@@ -29,15 +28,16 @@ const config: UserConfig = {
 		assetsDir: '.',
 		minify: process.env.MODE !== 'development',
 		lib: {
-			entry: 'src/index.ts',
+			entry: 'src/preload.ts',
 			formats: ['cjs'],
 		},
 		rollupOptions: {
 			external: [
 				'electron',
-				'word-list',
+				'execa',
+				'inquirer',
+				'inquirer-press-to-continue',
 				...builtinModules,
-				...builtinModules.map((moduleName) => `node:${moduleName}`),
 			],
 			output: {
 				entryFileNames: '[name].cjs',

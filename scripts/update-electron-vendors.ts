@@ -1,10 +1,10 @@
 #!/usr/bin/node
 
-import { execSync } from 'node:child_process';
+import { execSync } from 'child_process';
 import electron from 'electron';
-import fs from 'node:fs/promises';
-import path from 'node:path';
-import process from 'node:process';
+import fs from 'fs/promises';
+import path from 'path';
+import process from 'process';
 import type { PackageJson } from 'type-fest';
 
 function getVendors(): NodeJS.ProcessVersions {

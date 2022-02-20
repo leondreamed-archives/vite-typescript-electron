@@ -1,18 +1,17 @@
-import { builtinModules } from 'node:module';
-import path from 'node:path';
-import fs from 'node:fs';
-import process from 'node:process';
+import { builtinModules } from 'module';
+import path from 'path';
+import fs from 'fs';
+import process from 'process';
 import vue from '@vitejs/plugin-vue';
 import type { UserConfig } from 'vite';
-import desm, { join } from 'desm';
 
 const { chrome } = JSON.parse(
 	fs
-		.readFileSync(join(import.meta.url, '../../electron-vendors.config.json'))
+		.readFileSync(path.join(__dirname, '../../electron-vendors.config.json'))
 		.toString()
 ) as { chrome: string; node: string };
 
-const PACKAGE_ROOT = desm(import.meta.url);
+const PACKAGE_ROOT = __dirname;
 
 const config: UserConfig = {
 	mode: process.env.MODE,
@@ -22,7 +21,11 @@ const config: UserConfig = {
 			'~r': path.join(PACKAGE_ROOT, './src'),
 		},
 	},
-	plugins: [vue()],
+	plugins: [
+		vue({
+			reactivityTransform: true,
+		}),
+	],
 	base: '',
 	server: {
 		fs: {

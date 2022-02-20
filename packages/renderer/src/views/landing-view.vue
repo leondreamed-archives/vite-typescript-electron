@@ -1,7 +1,11 @@
 <script setup lang="ts">
-import HelloWorld from '~r/components/hello-world.vue';
+import AppTerminal from '~r/components/app-terminal.vue';
+import { useBootstrapModule } from '~r/use/modules';
+
+const { startBootstrap } = useBootstrapModule();
 </script>
 
 <template>
-	<HelloWorld />
+	<AppTerminal />
+	<button @click="startBootstrap">Start bootstrap!</button>
 </template>

@@ -1,5 +1,5 @@
-import path from 'node:path';
-import process from 'node:process';
+import path from 'path';
+import process from 'process';
 import { build } from 'vite';
 
 process.env.MODE = process.env.MODE ?? 'production';

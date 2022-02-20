@@ -1,5 +1,6 @@
-import type * as myModule from '~p/modules/my-module';
+import type * as bootstrapModule from '~p/modules/bootstrap';
 
-export function useMyModule() {
-	return (window as unknown as { myModule: typeof myModule }).myModule;
+export function useBootstrapModule() {
+	return (window as unknown as { bootstrapModule: typeof bootstrapModule })
+		.bootstrapModule;
 }

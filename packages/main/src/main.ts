@@ -1,5 +1,5 @@
 import { app, BrowserWindow, shell } from 'electron';
-import desm, { join } from 'desm';
+import path from 'path';
 
 const isSingleInstance = app.requestSingleInstanceLock();
 const isDevelopment = import.meta.env.MODE === 'development';
@@ -37,7 +37,7 @@ function main() {
 			show: false, // Use 'ready-to-show' event to show window
 			webPreferences: {
 				nativeWindowOpen: true,
-				preload: join(import.meta.url, '../../preload/dist/index.cjs'),
+				preload: path.join(__dirname, '../../preload/dist/preload.cjs'),
 			},
 		});
 
@@ -69,8 +69,7 @@ function main() {
 				? import.meta.env.VITE_DEV_SERVER_URL
 				: new URL(
 						'../renderer/dist/index.html',
-
-						`file://${desm(import.meta.url)}`
+						`file://${__dirname}`
 				  ).toString();
 
 		await mainWindow.loadURL(pageUrl);
@@ -133,7 +132,6 @@ function main() {
 	});
 
 	app.on('window-all-closed', () => {
-		// eslint-disable-next-line node/prefer-global/process
 		if (process.platform !== 'darwin') {
 			app.quit();
 		}

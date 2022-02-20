@@ -1,8 +1,8 @@
-import type { ChildProcessWithoutNullStreams } from 'node:child_process';
-import { spawn } from 'node:child_process';
+import type { ChildProcessWithoutNullStreams } from 'child_process';
+import { spawn } from 'child_process';
 import electron from 'electron';
-import process from 'node:process';
-import type { Buffer } from 'node:buffer';
+import process from 'process';
+import type { Buffer } from 'buffer';
 import type { OutputPlugin, RollupOutput, RollupWatcher } from 'rollup';
 import type { InlineConfig, LogLevel, ViteDevServer } from 'vite';
 import { build, createLogger, createServer } from 'vite';
@@ -73,6 +73,7 @@ const setupMainPackageWatcher = async (
 				spawnProcess = null;
 			}
 
+			// Spawns the electron process
 			spawnProcess = spawn(String(electronPath), ['.']);
 
 			spawnProcess.stdout.on('data', (data: Buffer) => {

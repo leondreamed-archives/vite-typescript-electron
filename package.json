@@ -9,7 +9,7 @@
 		"url": "https://leonzalion.com"
 	},
 	"type": "module",
-	"main": "packages/main/dist/index.cjs",
+	"main": "packages/main/dist/main.cjs",
 	"private": true,
 	"engines": {
 		"node": ">=v14"
@@ -37,18 +37,25 @@
 		"daisyui": "^1.25.4",
 		"desm": "^1.2.0",
 		"electron-updater": "^4.6.1",
-		"execa": "^6.0.0",
+		"execa": "^5.1.1",
+		"inquirer": "^8.2.0",
+		"inquirer-press-to-continue": "^1.0.5",
+		"open": "^8.4.0",
+		"outdent": "^0.8.0",
 		"postcss": "^8.4.6",
 		"tailwindcss": "^3.0.18",
 		"type-fest": "^2.11.1",
 		"vue": "^3.2.26",
 		"vue-router": "^4.0.12",
-		"word-list": "^3.1.0"
+		"word-list": "^3.1.0",
+		"xterm": "^4.17.0"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^16.2.1",
 		"@leonzalion/configs": "^1.0.66",
 		"@types/electron-devtools-installer": "^2.2.1",
+		"@types/esm": "^3.2.0",
+		"@types/inquirer": "^8.2.0",
 		"@types/node": "^17.0.8",
 		"@vitejs/plugin-vue": "^2.2.2",
 		"cross-env": "^7.0.3",

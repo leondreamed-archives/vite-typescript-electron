@@ -1,5 +1,5 @@
 import process from 'node:process';
-import { execaSync } from 'execa';
+import execa from 'execa';
 
 const message = process.argv.at(-1);
 
@@ -8,7 +8,7 @@ if (message === undefined) {
 }
 
 try {
-	execaSync('pnpm', ['exec', 'commitlint', '--edit', message], {
+	execa.sync('pnpm', ['exec', 'commitlint', '--edit', message], {
 		stdio: 'inherit',
 	});
 } catch {

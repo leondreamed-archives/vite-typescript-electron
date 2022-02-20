@@ -4,12 +4,28 @@
 		"rootDir": "../..",
 		"baseUrl": ".",
 		"paths": {
-			"~r/*": ["./src/*"],
-			"~p/*": ["../preload/src/*"]
+			"~r/*": [
+				"./src/*"
+			],
+			"~p/*": [
+				"../preload/src/*"
+			]
 		},
-		"lib": ["ESNext", "DOM", "DOM.Iterable"],
-		"typeRoots": ["node_modules/@types", "./typings"],
-		"types": ["node"]
+		"lib": [
+			"ESNext",
+			"DOM",
+			"DOM.Iterable"
+		],
+		"typeRoots": [
+			"node_modules/@types",
+			"./typings"
+		],
+		"types": [
+			"node",
+			"vue/ref-macros"
+		]
 	},
-	"include": ["./src"]
+	"include": [
+		"./src"
+	]
 }

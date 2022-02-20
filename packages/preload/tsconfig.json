@@ -10,6 +10,6 @@
 		},
 		"types": ["node"]
 	},
-	"files": ["src/index.ts"],
+	"files": ["src/preload.ts"],
 	"include": ["../../types/**/*.d.ts"]
 }

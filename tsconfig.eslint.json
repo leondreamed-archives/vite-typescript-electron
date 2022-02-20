@@ -1,0 +1,12 @@
+{
+	"extends": "./tsconfig.json",
+	"include": [
+		"packages",
+		"scripts",
+		"typings",
+		".eslintrc.cjs",
+		".markdownlint.cjs",
+		"electron-builder.config.cjs",
+		"jest.config.mjs"
+	]
+}
